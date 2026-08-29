@@ -29,7 +29,7 @@ public class IngredienteController {
     @PostMapping
     public ResponseEntity<IngredienteDTO> crearIngrediente(@RequestBody IngredienteDTO iDto){
         IngredienteDTO ingre = ingredienteService.crearIngrediente(iDto);
-        return ResponseEntity.created(URI.create("/ingrediente" + ingre.getIdIngrediente())).body(ingre);
+        return ResponseEntity.created(URI.create("/api/ingrediente" + ingre.getIdIngrediente())).body(ingre);
     }
 
     @PutMapping("/{id}")
