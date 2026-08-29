@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: msvc-ingrediente
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: ${DB_URL}
+    username: ${DB_INGREDIENTE_USERNAME}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 1
+      idle-timeout: 10000
+      max-lifetime: 600000
+      connection-timeout: 30000
+      validation-timeout: 5000
+      keepalive-time: 30000
+      pool-name: HikariPool-${spring.application.name}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        format_sql: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    org.hibernate: DEBUG
+    com.zaxxer.hikari: DEBUG
+    java.sql: DEBUG
+
+eureka:
+  instance:
+    instance-id:  ${spring.application.name}:${server.port}:${random.value}
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+
+server:
+  port: ${PORT:0}
