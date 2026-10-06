@@ -32,7 +32,7 @@ eureka:
     fetch-registry: false
 
 server:
-  port: 8080
+  port: 7073
 
 logging:
   level:
