@@ -27,12 +27,12 @@ class MapperTest {
         assertEquals(500.0, dto.getPrecioExtraIngrediente());
     }
 
-    // Ingrediente null -> null
+    // Ingrediente null -> lanza excepción
     @Test
-    void toDtoIngredienteNull_RetornaNull() {
-
-        IngredienteDTO dto = Mapper.toDto((Ingrediente) null);
-
-        assertNull(dto);
+    void toDtoIngredienteNull_LanzaExcepcion() {
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> Mapper.toDto((Ingrediente) null)
+        );
     }
 }
