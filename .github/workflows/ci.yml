@@ -26,5 +26,8 @@ jobs:
       - name: Dar permisos a Maven Wrapper
         run: chmod +x mvnw
 
-      - name: Ejecutar pruebas
-        run: ./mvnw clean test
+      - name: Compilar y ejecutar pruebas
+        run: ./mvnw clean package
+
+      - name: Construir imagen docker
+        run: docker build -t msvc-ingrediente .
