@@ -32,19 +32,12 @@ public class IngredienteServiceImpl implements IngredienteService {
 
     @Override
     public IngredienteDTO crearIngrediente(IngredienteDTO iDto) {
+        Ingrediente ingre =  new Ingrediente();
+                ingre.setNombreIngrediente(iDto.getNombreIngrediente());
+                ingre.setPrecioEstandarIngrediente(iDto.getPrecioEstandarIngrediente());
+                ingre.setPrecioExtraIngrediente(iDto.getPrecioExtraIngrediente());
 
-        Ingrediente ingre = new Ingrediente();
-        ingre.setNombreIngrediente(iDto.getNombreIngrediente());
-        ingre.setPrecioEstandarIngrediente(iDto.getPrecioEstandarIngrediente());
-        ingre.setPrecioExtraIngrediente(iDto.getPrecioExtraIngrediente());
-
-        Ingrediente ingredienteGuardado = repo.save(ingre);
-
-        if (ingredienteGuardado == null) {
-            throw new IllegalStateException("No se pudo guardar el ingrediente");
-        }
-
-        return Mapper.toDto(ingredienteGuardado);
+        return Mapper.toDto(repo.save(ingre));
     }
 
     @Override

@@ -8,8 +8,9 @@ import com.cocinApp.msvc_ingrediente.model.LoteIngrediente;
 public class Mapper {
 
     public static IngredienteDTO toDto(Ingrediente i) {
-        if (i == null) return null;
-
+        if (i == null) {
+            throw new IllegalArgumentException("El ingrediente no puede ser null");
+        }
         return IngredienteDTO.builder()
                 .idIngrediente(i.getIdIngrediente())
                 .nombreIngrediente(i.getNombreIngrediente())
