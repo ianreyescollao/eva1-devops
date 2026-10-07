@@ -31,7 +31,7 @@ jobs:
       - name: Compilar, ejecutar pruebas y analizar con SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./mvnw -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ianreyescollao_eva1-devops
+        run: ./mvnw -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=ianreyescollao_eva1-devops -Dsonar.qualitygate.wait=true
 
       - name: Construir imagen docker
         run: docker build -t msvc-ingrediente .
