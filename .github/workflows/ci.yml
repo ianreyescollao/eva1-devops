@@ -36,3 +36,20 @@ jobs:
 
       - name: Construir imagen docker
         run: docker build -t msvc-ingrediente .
+
+      - name: Desplegar con Docker Compose
+        run: docker compose up -d --build
+
+      - name: Verificar estado del microservicio
+        run: |
+          for i in {1..10}; do
+            if curl -f http://localhost:7073/api/ingredientes; then
+              echo "Microservicio funcionando correctamente"
+              exit 0
+            fi
+            echo "Esperando que el microservicio inicie..."
+            sleep 5
+          done
+          echo "El microservicio no respondió correctamente"
+          docker compose logs
+          exit 1
