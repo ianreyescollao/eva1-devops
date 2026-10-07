@@ -1,0 +1,16 @@
+services:
+  msvc-ingrediente:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: msvc-ingrediente
+    ports:
+      - "7073:7073"
+    mem_limit: 512m
+    cpus: "0.50"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7073/api/ingredientes"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
