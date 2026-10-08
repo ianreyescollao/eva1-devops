@@ -2,7 +2,7 @@ package com.cocinApp.msvc_ingrediente.controller;
 
 import com.cocinApp.msvc_ingrediente.dto.IngredienteDTO;
 import com.cocinApp.msvc_ingrediente.service.IngredienteService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +13,11 @@ import java.util.List;
 @RequestMapping("/api/ingredientes")
 public class IngredienteController {
 
-    @Autowired
-    private IngredienteService ingredienteService;
+    private final IngredienteService ingredienteService;
+
+    public IngredienteController(IngredienteService ingredienteService) {
+        this.ingredienteService = ingredienteService;
+    }
 
     @GetMapping
     public ResponseEntity<List<IngredienteDTO>> traerIngrediente(){

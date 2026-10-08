@@ -7,7 +7,6 @@ import com.cocinApp.msvc_ingrediente.mapper.Mapper;
 import com.cocinApp.msvc_ingrediente.model.Ingrediente;
 import com.cocinApp.msvc_ingrediente.repository.IngredienteRepository;
 import com.cocinApp.msvc_ingrediente.service.IngredienteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +14,11 @@ import java.util.List;
 @Service
 public class IngredienteServiceImpl implements IngredienteService {
 
-    @Autowired
-    private IngredienteRepository repo;
+    private final IngredienteRepository repo;
+
+    public IngredienteServiceImpl(IngredienteRepository repo) {
+        this.repo = repo;
+    }
 
     @Override
     public List<IngredienteDTO> traerIngrediente() {
